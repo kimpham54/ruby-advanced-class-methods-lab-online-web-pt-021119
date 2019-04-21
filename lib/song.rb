@@ -1,53 +1,42 @@
 
 
-require "pry"
-class Song
-  attr_accessor :name, :artist_name
-  @@all = []
-
-  def self.all()
-    @@all
-  end
-
-  def save
-    self.class.all << self
-  end
-
-
-  def self.create()
-    song = self.new
-    song.save
-    song
-    # @@all << song
-    # return song
-end
-
-def self.new_by_name(title)
-  song = self.new
-  song.name = title
-  song
-end
-
-def self.create_by_name(title)
-  song = self.create
-  song.name = title
-  song
-  # @@all.push(song)  song
-end
-
-def self.find_by_name(title)
-  # self.all.detect{|s| s.name == title}
-found = nil
-@@all.each do |song|
-  if song.name == title
-    found = song
-  end
-end
-found
-end
-
-def self.find_or_create_by_name(title)
-# self.find_by_name(title)
+# require "pry"
+# class Song
+#   attr_accessor :name, :artist_name
+#   @@all = []
+# 
+#   def self.all()
+#     @@all
+#   end
+# 
+#   def save
+#     self.class.all << self
+#   end
+# 
+# 
+#   def self.create()
+#     song = self.new
+#     song.save
+#     song
+#     # @@all << song
+#     # return song
+# end
+# 
+# def self.new_by_name(title)
+#   song = self.new
+#   song.name = title
+#   song
+# end
+# 
+# def self.create_by_name(title)
+#   song = self.create
+#   song.name = title
+#   song
+#   # @@all.push(song)  song
+# end
+# 
+# def self.find_by_name(title)
+#   # self.all.detect{|s| s.name == title}
 # found = nil
 # @@all.each do |song|
 #   if song.name == title
@@ -55,18 +44,75 @@ def self.find_or_create_by_name(title)
 #   end
 # end
 # found
-songlookup = nil
-songlookup = self.find_by_name(title)
-  if songlookup == nil
-    # self.create_by_name(title)
-      # song = self.new
-      # song.name = title
-      # @@all.push(song)
-      # song
-      songlookup = self.create_by_name(title)
-    end
-    songlookup
-end
+# end
+# 
+# def self.find_or_create_by_name(title)
+# # self.find_by_name(title)
+# # found = nil
+# # @@all.each do |song|
+# #   if song.name == title
+# #     found = song
+# #   end
+# # end
+# # found
+# songlookup = nil
+# songlookup = self.find_by_name(title)
+#   if songlookup == nil
+#     # self.create_by_name(title)
+#       # song = self.new
+#       # song.name = title
+#       # @@all.push(song)
+#       # song
+#       songlookup = self.create_by_name(title)
+#     end
+#     songlookup
+# end
+
+
+
+
+
+class Song
+  attr_accessor :name, :artist_name
+  @@all = []
+
+  def self.all
+    @@all
+  end
+
+  def save
+    self.class.all << self
+  end
+
+  def self.create
+    song = Song.new
+    song.save
+    song
+  end
+
+  def self.new_by_name(song_name)
+    song = self.new
+    song.name = song_name
+    song
+  end
+
+  def self.create_by_name(song_name)
+    song = self.create
+    song.name = song_name
+    song
+  end
+
+  def self.find_by_name(song_name)
+    self.all.detect{|s| s.name == song_name}
+  end
+
+  def self.find_or_create_by_name(song_name)
+    self.find_by_name(song_name) || self.create_by_name(song_name)
+  end
+
+
+
+
 
 def self.alphabetical
 end
